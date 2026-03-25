@@ -36,6 +36,7 @@ Before running, review and adjust `config.py` and/or environment variables:
 
 - `OPENAI_API_KEY`
 - `OPENAI_BASE_URL`
+- `IP_LOCAL_SERVER`
 - `DRFT_INPUT_CSV`
 - `DRFT_OUTPUT_CSV`
 - `DRFT_TOP_K`

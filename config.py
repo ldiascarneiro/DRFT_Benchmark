@@ -32,10 +32,10 @@ G_EVAL_MODEL = os.getenv("DRFT_G_EVAL_MODEL", "gpt-4o-mini")
 # ==========================
 
 # Endpoint do servidor vLLM para inferência
-CHAT_MODEL_URL = os.getenv("DRFT_CHAT_MODEL_URL", "IP_SERVIDOR")
+CHAT_MODEL_URL = os.getenv("DRFT_CHAT_MODEL_URL", "IP_LOCAL_SERVER")
 
 # URL base para operações de API do Ollama (ex: /api/pull)
-OLLAMA_API_URL = os.getenv("DRFT_OLLAMA_API_URL", "IP_SERVIDOR")
+OLLAMA_API_URL = os.getenv("DRFT_OLLAMA_API_URL", "IP_LOCAL_SERVER")
 
 # Nome do modelo a ser usado se não especificado de outra forma (fallback)
 LLM_MODEL_NAME = os.getenv("DRFT_LLM_MODEL_NAME", "qwen2.5:32b")

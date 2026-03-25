@@ -1,0 +1,10 @@
+nova arch
+ - planner
+ - writer
+ - reviewer
+ - judge
+ - metrics
+
+verificar num_ctx
+metricas por arquivo
+metricas por dataset por modelo

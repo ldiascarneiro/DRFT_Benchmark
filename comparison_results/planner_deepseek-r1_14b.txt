@@ -1,0 +1,111 @@
+
+======================================================================
+TEST DATE: 27/01/2026 12:55:33
+AGENT: PLANNER
+MODEL USED: deepseek-r1:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+### Revision Plan for Academic Paper
+
+---
+
+#### **1. Introduction**
+- **Issue**: The motivation for extending bAbI with supporting questions/answers is not clearly explained.
+  - **Action**: Provide a clearer rationale for why interactive QA was chosen and how it differs from traditional bAbI tasks.
+- **Issue**: The process of generating supporting questions and user feedback is not detailed.
+  - **Action**: Add a subsection explaining the templates, number of words used, and methodology for creating supporting questions.
+
+#### **2. Related Work**
+- **Issue**: The comparison between CAN and existing models (e.g., DMN, MemN2N) lacks depth.
+  - **Action**: Expand on how the tasks are fundamentally different and provide concrete examples to clarify this distinction.
+
+#### **3. Methodology**
+- **Issue**: The GRU encoding process for questions, input sentences, and user feedback is unclear.
+  - **Action**: Re-express the methodology in a more structured way, ensuring that the hidden state sizes (e.g., $K_f$ vs. $K_h$) are explicitly addressed or equalized.
+- **Issue**: The novelty of the QA model is questioned.
+  - **Action**: Highlight specific architectural choices or innovations in the model design to differentiate it from existing work.
+
+#### **4. Experiments**
+- **Issue**: The experimental results are limited to only three tasks out of twenty.
+  - **Action**: Expand the experiments to include all twenty tasks and provide a broader discussion of the findings.
+- **Issue**: The IQA model's interaction process is confusing.
+  - **Action**: Clarify whether human interaction is required during training or if questions are predefined, and address practical concerns about scalability.
+
+#### **5. Conclusion**
+- **Issue**: The broader impact and implications of the work are not discussed sufficiently.
+  - **Action**: Add a discussion on potential applications and future research directions.
+
+#### **6. Appendices**
+- **Issue**: Technical details (e.g., equation formatting) need correction.
+  - **Action**: Fix typos in equations (e.g., ensure 't' is uppercase for transpose operations).
+
+#### **7. Proofreading**
+- **Issue**: General typos and inconsistencies are present throughout the paper.
+  - **Action**: Conduct a thorough proofread to correct grammatical errors, clarify jargon, and ensure consistency in terminology.
+
+---
+
+### Summary of Key Actions:
+1. Expand on the motivation and methodology for generating supporting questions.
+2. Clarify the relationship between CAN and existing models (e.g., DMN, MemN2N).
+3. Address concerns about the IQA model's practicality and scalability.
+4. Fix technical details in equations and ensure consistency in hidden state sizes.
+5. Conduct a thorough proofread to eliminate typos and improve clarity.
+
+---
+
+This structured revision plan should help address the reviewers' concerns and strengthen the paper's overall argument and presentation.
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:56:15
+AGENT: PLANNER
+MODEL USED: deepseek-r1:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+### Revision Plan for the Paper
+
+---
+
+#### **1. Introduction**
+- **Clarify Contribution**: Emphasize how adding a reward-predicting head extends beyond previous work by enabling end-to-end learning of both dynamics and rewards, which is novel in the context of model-based RL.
+- **Contextualize Importance**: Highlight the significance of this approach for environments where the reward function is not directly observable or linked to states.
+
+---
+
+#### **2. Related Work**
+- **Deepen Comparison**: Include a more detailed comparison with recent frame prediction methods and discuss how their work differs, especially in integrating reward prediction.
+- **Expand Literature Review**: Add references to studies that combine prediction models with RL, situating the current work within broader trends.
+
+---
+
+#### **3. Methodology**
+- **Architecture Justification**: Discuss why the chosen architecture is effective for both frame and reward prediction, addressing its suitability over alternative architectures.
+- **Training Details**: Elaborate on the training process, including any novel techniques used to align frame and reward predictions effectively.
+
+---
+
+#### **4. Experiments**
+- **Limitations of Atari**: Acknowledge the deterministic nature of Atari games and suggest future experiments in more complex or stochastic environments.
+- **Ablation Studies**: Include ablation studies to demonstrate the impact of reward prediction on RL performance, providing quantitative evidence of its value.
+
+---
+
+#### **5. Future Work**
+- **Synthetic Data Generation**: Explore how synthetic data generation can enhance training efficiency and model generalization.
+- **MCTS Integration**: Outline specific methods for integrating the learned model with MCTS, detailing potential improvements in planning and decision-making.
+
+---
+
+#### **6. Conclusion**
+- **Summarize Key Contributions**: Concisely highlight the novel aspects of their approach and its implications for model-based RL beyond prediction tasks.
+- **Broader Implications**: Suggest broader applications of this work in various RL domains, emphasizing its potential impact on future research.
+
+---
+
+This structured plan addresses the reviewers' concerns by enhancing the paper's novelty, depth, and applicability, ensuring a more impactful contribution to the field.
+======================================================================
+

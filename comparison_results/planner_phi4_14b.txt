@@ -1,0 +1,126 @@
+
+======================================================================
+TEST DATE: 27/01/2026 12:57:02
+AGENT: PLANNER
+MODEL USED: phi4:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+### Revision Plan
+
+#### Abstract
+- **Clarify Motivation**: Emphasize why interactive QA is significant and how it extends beyond traditional QA tasks.
+- **Summarize Key Contributions**: Clearly state the novel contributions of the paper, focusing on the architecture improvements and dataset extension.
+
+#### Introduction
+- **Contextual Background**: Provide a brief overview of existing QA models and their limitations to set the stage for the need for interactive QA.
+- **Problem Statement**: Clearly articulate the problem being addressed by introducing an interactive version of the bAbI dataset.
+- **Research Objectives**: Define the specific objectives of the paper, including both architectural improvements and dataset enhancements.
+
+#### Related Work
+- **Comparison with Baselines**: Offer a detailed comparison between CAN, DMN+, MemN2N, and other relevant models, highlighting differences in handling interactive QA.
+- **Highlight Novelty**: Explicitly state how this work differs from existing approaches like Dialog-based Language Learning and End-to-End Goal-Oriented Dialog.
+
+#### Methodology
+- **Dataset Extension Details**:
+  - Explain the process of generating supporting questions/answers.
+  - Specify the number of templates/words used and justify their selection.
+  - Clarify how these additions make the task more interactive rather than just providing additional facts.
+  
+- **Model Architecture**:
+  - Provide a detailed explanation of the two-stage encoding using GRUs, including any assumptions or simplifications made (e.g., equal hidden sizes).
+  - Address reviewer concerns by explaining why generating questions word-by-word is beneficial over predicting from a fixed set.
+
+#### Experiments and Results
+- **Fair Comparison**: Ensure that all models are evaluated under similar conditions, particularly in distinguishing between original and supporting questions.
+- **Detailed Analysis**:
+  - Provide insights into why CAN performs better than DMN+ and MemN2N on specific tasks.
+  - Discuss the implications of results where models fail or perform unexpectedly.
+
+#### Discussion
+- **Address Reviewer Concerns**: 
+  - Respond to concerns about the novelty of the QA model by highlighting unique aspects of the architecture.
+  - Discuss practicality issues raised regarding human interaction in training and clarify how predefined questions still contribute to interactivity.
+  
+- **Future Work**:
+  - Suggest potential improvements or extensions, such as more sophisticated question generation techniques or broader dataset applications.
+
+#### Conclusion
+- **Summarize Findings**: Concisely recap the main findings and contributions of the paper.
+- **Reiterate Significance**: Reinforce the importance of interactive QA and how this work advances the field.
+
+#### Appendices
+- **Equation Corrections**:
+  - Correct Equation 14 to use uppercase 'T' for transpose operations.
+  
+- **Clarifications on Model Details**:
+  - Ensure consistency in hidden state sizes across different sections, particularly between Equations and Training Procedure descriptions.
+
+#### General Revisions
+- **Language and Clarity**: 
+  - Address any remaining typos or unclear language throughout the paper.
+  - Ensure that all technical terms are defined or referenced appropriately for clarity. 
+
+This structured revision plan aims to address reviewer feedback comprehensively while enhancing the overall clarity and impact of the paper.
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:57:41
+AGENT: PLANNER
+MODEL USED: phi4:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+### Revision Plan for Paper
+
+#### Introduction
+- **Objective**: Clarify the novelty of combining frame prediction with reward prediction and emphasize its significance in advancing model-based RL.
+- **Actions**:
+  - Highlight how this integration addresses specific challenges in model-based RL not fully tackled by previous works, including [Oh et al. 2015].
+  - Briefly mention the potential impact on reducing real-world training samples and improving performance through future work directions.
+
+#### Literature Review
+- **Objective**: Position the paper within existing research more effectively.
+- **Actions**:
+  - Provide a concise comparison with [Oh et al. 2015], focusing on how adding a reward-predicting head extends beyond merely incrementing score counters in predicted frames.
+  - Discuss related works that have attempted similar integrations but did not achieve the same level of success or clarity.
+
+#### Methodology
+- **Objective**: Strengthen the justification for the chosen approach and its expected contributions.
+- **Actions**:
+  - Elaborate on why a feedforward network was selected for combining frame and reward prediction, including any advantages over other architectures in this context.
+  - Detail the rationale behind the specific design choices made for the reward-predicting head.
+
+#### Results
+- **Objective**: Enhance the presentation of results to underscore their significance.
+- **Actions**:
+  - Include a more detailed analysis of why the ability to predict rewards within about 50 steps is noteworthy, especially in comparison to existing methods.
+  - Discuss any unexpected findings or challenges encountered during experimentation and how they were addressed.
+
+#### Discussion
+- **Objective**: Deepen the discussion on the implications of the results for model-based RL and future research directions.
+- **Actions**:
+  - Expand on how the joint model of frames and rewards could facilitate more efficient learning in complex environments, potentially reducing reliance on extensive real-world data.
+  - Clearly articulate the potential benefits of incorporating Monte-Carlo tree search as suggested in the conclusions, including any preliminary thoughts or hypotheses on expected outcomes.
+
+#### Future Work
+- **Objective**: Provide a clearer roadmap for applying the learned joint model to model-based RL and exploring other promising directions.
+- **Actions**:
+  - Outline specific experiments that could be conducted to test the application of the joint model in model-based RL scenarios, including any necessary modifications or considerations.
+  - Suggest additional research avenues based on the findings, such as exploring different network architectures or applying the approach to non-gaming environments.
+
+#### Conclusion
+- **Objective**: Reinforce the paper's contributions and its place within the broader field of AI and machine learning.
+- **Actions**:
+  - Summarize the key achievements of the paper in a way that highlights their novelty and potential impact on future research.
+  - Reiterate the importance of continuing to explore the integration of frame prediction with reward prediction in advancing model-based RL.
+
+#### General
+- **Objective**: Improve clarity, coherence, and engagement throughout the paper.
+- **Actions**:
+  - Ensure consistent terminology is used when referring to key concepts and methodologies.
+  - Incorporate visual aids (e.g., diagrams or flowcharts) where appropriate to help illustrate complex ideas or processes.
+  - Enhance readability by breaking down long paragraphs into shorter ones, using bullet points for lists, and including subheadings for better navigation.
+======================================================================
+

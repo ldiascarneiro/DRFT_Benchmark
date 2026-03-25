@@ -1,0 +1,541 @@
+
+======================================================================
+TEST DATE: 20/01/2026 22:14:06
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+**Revision Plan**  
+*(Organized by sections, following the structure of the original draft and reviewer feedback)*  
+
+---
+
+### **1. Abstract**  
+- **Revisions Needed**:  
+  - Clarify the **interactive bAbI dataset extension** and its novelty (e.g., supporting questions/feedback generation).  
+  - Explicitly state the **model’s architecture** (two-stage GRU encoding) and its performance compared to baselines (DMN, MemN2N).  
+  - Address the **limitations** (e.g., testing on only 3/20 tasks, synthetic question generation).  
+
+---
+
+### **2. Introduction**  
+- **Revisions Needed**:  
+  - **Motivate the interactive bAbI dataset** more clearly (e.g., why existing datasets lack feedback loops).  
+  - **Clarify the model’s contribution** over prior work (e.g., DMN’s inability to distinguish feedback vs. original context).  
+  - **State the problem** with current approaches (e.g., synthetic question generation as “more supporting facts” vs. true interaction).  
+
+---
+
+### **3. Related Work**  
+- **Revisions Needed**:  
+  - **Add references** to prior interactive QA models (e.g., Dialog-based Language Learning by Weston, Learning End-to-End Goal-Oriented Dialog by Bordes & Weston).  
+  - **Compare the model’s approach** to these works (e.g., differences in feedback integration, synthetic question generation).  
+
+---
+
+### **4. Interactive bAbI Dataset**  
+- **Revisions Needed**:  
+  - **Create a new section** to detail the dataset extension:  
+    - Explain how **supporting questions/answers** were generated (e.g., templates, number of templates/words used).  
+    - Describe **user feedback generation** (e.g., synthetic vs. real, methodology).  
+    - Clarify **why the interactive version is necessary** (e.g., addressing gaps in existing datasets).  
+
+---
+
+### **5. Model Architecture**  
+- **Revisions Needed**:  
+  - **Clarify the two-stage GRU encoding**:  
+    - Specify whether **K_f (feedback hidden size)** equals **K_h (input/question hidden size)** (address typo in Section 4.5).  
+    - Explain **how the model integrates feedback** (e.g., GRU states, attention mechanisms).  
+  - **Detail synthetic question generation**:  
+    - Justify use of **RNN decoder** over direct prediction (e.g., flexibility, handling open-ended questions).  
+    - Address reviewer concern: “Why not predict values directly?” (e.g., RNN allows dynamic question generation).  
+
+---
+
+### **6. Training Procedure**  
+- **Revisions Needed**:  
+  - **Correct Equation 14**: Ensure transpose notation is uppercase (e.g., $\mathbf{u}^T \mathbf{s}_t + \mathbf{u}^T \mathbf{r}$).  
+  - **Clarify GRU usage**: Explicitly state whether **K_f = K_h** (to justify single GRU for all sequences).  
+  - **Detail training for interactive model**:  
+    - Explain how **feedback and synthetic questions** are incorporated into the loss function.  
+    - Address **multi-task learning** (if applicable).  
+
+---
+
+### **7. Experiments**  
+- **Revisions Needed**:  
+  - **Expand testing to all 20 bAbI tasks** (not just 3).  
+  - **Compare with baselines** (DMN, MemN2N) on **all tasks**, not just a subset.  
+  - **Include ablation studies**:  
+    - Test impact of **synthetic question generation** (vs. using only supporting facts).  
+    - Test **GRU hidden size equality** (K_f vs. K_h).  
+
+---
+
+### **8. Results**  
+- **Revisions Needed**:  
+  - **Provide detailed results** (e.g., accuracy, F1 scores) for all 20 tasks.  
+  - **Visualize performance** (e.g., bar charts, tables) to address reviewer concerns about lack of convincing results.  
+  - **Compare with prior work** (e.g., Dialog-based Language Learning) on interactive QA benchmarks.  
+
+---
+
+### **9. Discussion**  
+- **Revisions Needed**:  
+  - **Address limitations**:  
+    - Dataset scope (only 3 tasks tested initially).  
+    - Reliance on **predefined templates** for synthetic questions.  
+  - **Discuss implications**:  
+    - How the model could be extended to real-world interactive QA scenarios.  
+    - Trade-offs between **RNN-based question generation** and simpler prediction methods.  
+
+---
+
+### **10. Conclusion**  
+- **Revisions Needed**:  
+  - **Summarize contributions** (interactive dataset, two-stage GRU architecture).  
+  - **Highlight future work**:  
+    - Expand dataset to more tasks.  
+    - Explore **real-world feedback integration** (e.g., human-in-the-loop).  
+
+---
+
+### **11. Appendices**  
+- **Revisions Needed**:  
+  - **Correct typos**:  
+    - Equation 14: Ensure transpose notation is uppercase.  
+    - Clarify **K_f vs. K_h** in Section 4.5 (if not equal, explain).  
+  - **Add supplementary experiments**:  
+    - Results of **ablation studies** (e.g., K_f vs. K_h, synthetic question generation).  
+
+---
+
+### **12. Typos and Notation**  
+- **Revisions Needed**:  
+  - **Fix all typos** identified in reviews (e.g., Equation 14, K_f/K_h consistency).  
+  - **Standardize notation** (e.g., uppercase for transpose, consistent variable definitions).  
+
+--- 
+
+**End of Revision Plan**
+======================================================================
+
+
+======================================================================
+TEST DATE: 20/01/2026 22:15:17
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+**Revision Plan**  
+*(Organized by sections, following the structure of the original draft and peer reviews)*  
+
+---
+
+### **1. Abstract**  
+- **Revisions Needed**:  
+  - Clarify the novelty of the joint frame-reward prediction model compared to prior work (e.g., [Oh et al. 2015]).  
+  - Emphasize the contribution as a pre-condition for model-based RL, as highlighted in the future work section.  
+  - Highlight the practical implications of the results (e.g., enabling model-based RL with learned dynamics).  
+
+---
+
+### **2. Introduction**  
+- **Revisions Needed**:  
+  - **Contextualize the Work**: Explicitly contrast the current approach with [Oh et al. 2015], noting that while their method predicts score counters, the joint frame-reward model enables a unified representation for model-based RL.  
+  - **State the Novelty**: Clearly articulate the contribution as a foundational step for integrating model-based RL with learned dynamics, even if the results are incremental.  
+  - **Address Limitations**: Acknowledge that the deterministic link between state and reward in Atari games may limit the perceived novelty but argue for the broader applicability of the framework.  
+
+---
+
+### **3. Related Work**  
+- **Revisions Needed**:  
+  - **Expand on Prior Methods**: Compare the joint frame-reward model with existing approaches (e.g., [Oh et al. 2015], [Finn et al. 2016]) in terms of architecture, training, and application.  
+  - **Highlight Gaps**: Emphasize that prior work focuses on frame prediction or reward prediction in isolation, whereas this work unifies them for model-based RL.  
+
+---
+
+### **4. Methodology**  
+- **Revisions Needed**:  
+  - **Clarify the Joint Model**: Explain why combining frame and reward prediction in a single network is non-trivial (e.g., alignment of latent representations, training stability).  
+  - **Address Critiques**: Explicitly discuss how the joint model differs from [Oh et al. 2015] (e.g., explicit reward prediction head vs. implicit score counter prediction).  
+  - **Add Technical Details**: Include ablation studies or comparisons with separate frame and reward models to demonstrate the benefits of the joint approach.  
+
+---
+
+### **5. Results**  
+- **Revisions Needed**:  
+  - **Quantify Performance**: Provide detailed metrics (e.g., reward prediction accuracy, frame prediction error) and compare them to the baseline [Oh et al. 2015].  
+  - **Discuss Limitations**: Acknowledge that the deterministic nature of Atari games may make reward prediction easier, but argue for the model’s potential in more complex environments.  
+  - **Visualize Results**: Include figures showing predicted vs. actual rewards and frames to support claims of performance.  
+
+---
+
+### **6. Future Work**  
+- **Revisions Needed**:  
+  - **Expand on Proposed Directions**: Elaborate on the two suggested future directions (artificial sample augmentation and Monte-Carlo tree search integration) with preliminary ideas or hypotheses.  
+  - **Link to Broader Impact**: Explain how these extensions could reduce real-world training samples and improve performance, as suggested by reviewers.  
+
+---
+
+### **7. Conclusion**  
+- **Revisions Needed**:  
+  - **Reiterate Contribution**: Reinforce the paper’s role as a pre-condition for model-based RL, even if the results are incremental.  
+  - **Address Reviewer Concerns**: Acknowledge the incremental nature of the work but argue for its importance as a stepping stone for future research.  
+
+---
+
+### **8. References**  
+- **Revisions Needed**:  
+  - **Add Missing Citations**: Ensure all relevant prior work (e.g., [Oh et al. 2015], [Finn et al. 2016]) is properly cited.  
+  - **Update Formatting**: Verify consistency in citation style (e.g., author names, years).  
+
+---
+
+### **9. Additional Sections (if needed)**  
+- **Revisions Needed**:  
+  - **Limitations Section**: Explicitly discuss the deterministic nature of Atari games and the model’s potential limitations in non-deterministic environments.  
+  - **Broader Implications**: Highlight how the joint model could be applied beyond Atari games (e.g., robotics, real-world environments).  
+
+---
+
+### **10. Language and Clarity**  
+- **Revisions Needed**:  
+  - **Improve Flow**: Ensure the paper transitions smoothly between sections, especially between methodology and results.  
+  - **Clarify Technical Terms**: Define acronyms (e.g., RL, MCTS) and ensure jargon is accessible to a broader audience.  
+
+--- 
+
+**Note**: The revisions aim to address the reviewers’ concerns about incrementalism by emphasizing the paper’s role as a foundational step for model-based RL, while also improving clarity, novelty articulation, and experimental depth.
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:52:00
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+**Revision Plan**  
+
+---
+
+### **1. Abstract and Introduction**  
+- **Clarify the interactive bAbI dataset extension**:  
+  - Explicitly describe how supporting questions/answers were generated (e.g., templates, number of templates, and methodology for user feedback simulation).  
+  - Emphasize the novelty of the interactive QA framework compared to traditional bAbI tasks.  
+- **Address experimental limitations**:  
+  - Mention that experiments were conducted on a subset of tasks (e.g., 3 out of 20) and propose to expand evaluations to more tasks in the revised version.  
+- **Strengthen motivation**:  
+  - Highlight the practical relevance of interactive QA (e.g., real-world applications, limitations of non-interactive models).  
+
+---
+
+### **2. Related Work**  
+- **Compare CAN with DMN+/MemN2N explicitly**:  
+  - Clarify how CAN differs from existing models (e.g., two-stage encoding, question generation, or integration of feedback).  
+  - Address the reviewer’s concern about similarity to DMN+ by citing specific architectural differences (e.g., GRU hierarchy, context modeling).  
+- **Cite prior work on interactive QA**:  
+  - Reference papers like "Dialog-based Language Learning" (Weston et al.) and "End-to-End Goal-Oriented Dialog" (Bordes et al.) to contextualize the contribution.  
+
+---
+
+### **3. Methodology**  
+- **Model Architecture**:  
+  - **Clarify GRU parameters**:  
+    - Explicitly state whether $ K_f $ (feedback hidden size) equals $ K_h $ (input/question hidden size) in Section 4.5.  
+    - If not, explain how different hidden sizes are handled during encoding.  
+  - **Question Generation**:  
+    - Justify the use of an RNN for question generation (e.g., flexibility, handling open-ended queries) instead of predicting values from templates.  
+    - Provide examples of generated questions and their alignment with training data.  
+- **Two-Stage Encoding**:  
+  - Add a diagram or detailed explanation of the hierarchical GRU structure (sentence-level GRU conditioned on context-level GRU).  
+  - Specify how feedback is integrated into the context modeling process.  
+
+---
+
+### **4. Experimental Setup**  
+- **Dataset Generation Details**:  
+  - Add a subsection describing the methodology for creating supporting questions/answers (e.g., number of templates, sampling strategy, validation process).  
+  - Include statistics (e.g., number of supporting questions per task, diversity of question types).  
+- **Task Selection**:  
+  - Explain why only 3 tasks were tested initially and propose to include results for additional tasks in the revised version.  
+- **Evaluation Metrics**:  
+  - Clarify metrics for interactive tasks (e.g., accuracy, fluency of generated questions, or user feedback simulation performance).  
+
+---
+
+### **5. Results and Discussion**  
+- **Address DMN+ Comparison**:  
+  - Provide ablation studies to demonstrate the impact of the two-stage encoding and question generation components.  
+  - Highlight specific tasks where CAN outperforms DMN+/MemN2N (e.g., task 1, task 3).  
+- **Limitations and Future Work**:  
+  - Acknowledge limitations (e.g., dataset scalability, reliance on predefined templates) and propose solutions (e.g., data augmentation, end-to-end training).  
+
+---
+
+### **6. Conclusion**  
+- **Reiterate Novelty**:  
+  - Summarize the key contributions (e.g., interactive QA framework, hierarchical GRU architecture) and their significance.  
+  - Emphasize the practical implications of the model for real-world dialog systems.  
+
+---
+
+### **7. Appendices and Supplementary Materials**  
+- **Appendix A: Dataset Generation Details**:  
+  - Include full description of templates, user feedback simulation, and validation procedures.  
+- **Appendix B: Hyperparameters and Training Details**:  
+  - Provide values for $ K_f $, $ K_h $, learning rates, and optimizer settings.  
+- **Appendix C: Additional Experiments**:  
+  - Add results for tasks not included in the main paper (e.g., tasks 4–6).  
+
+---
+
+### **8. Typos and Formatting**  
+- **Equation 14**:  
+  - Correct transpose notation to $ \mathbf{u}^T \mathbf{s}_t + \mathbf{u}^T \mathbf{r} $.  
+- **Section 4.5**:  
+  - Clarify whether $ K_f = K_h $ or explicitly describe how different hidden sizes are handled.  
+
+---
+
+### **9. Additional Revisions**  
+- **Expand Experimental Section**:  
+  - Add comparison with baseline models (e.g., enc-dec* module) on interactive tasks.  
+- **Clarify Interactive Task Definition**:  
+  - Define what constitutes a "successful" interaction (e.g., number of feedback rounds, answer accuracy after feedback).  
+
+--- 
+
+**End of Revision Plan**
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:52:49
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+**Revision Plan**  
+---  
+
+### **1. Abstract**  
+- **Clarify novelty**: Explicitly state the novelty of combining frame and reward prediction in a joint model, emphasizing that this extends beyond prior work (e.g., Oh et al. 2015) by enabling explicit reward modeling for model-based RL.  
+- **Highlight contributions**: Emphasize the contribution of enabling model-based RL with a learned joint model, even if the immediate results are incremental.  
+- **Address deterministic link**: Briefly acknowledge the deterministic relationship between state and reward in Atari games but stress the broader applicability of the method to non-deterministic environments.  
+
+---
+
+### **2. Introduction**  
+- **Contextualize the problem**: Reinforce the importance of model-based RL and the challenges of learning system dynamics and reward structures.  
+- **Compare with prior work**: Explicitly contrast the current approach with Oh et al. 2015, clarifying that this work introduces a reward-predicting head for explicit reward modeling, not just score counter prediction.  
+- **State contributions**: Clearly outline the paper’s contributions, including the joint model’s potential for model-based RL and the experimental validation on Atari games.  
+
+---
+
+### **3. Methodology**  
+- **Detail the architecture**: Explain how the reward-predicting head is integrated (e.g., shared vs. separate layers, training objectives) to avoid being perceived as a trivial extension.  
+- **Justify design choices**: Discuss why the joint model is advantageous over separate frame and reward prediction (e.g., improved consistency, reduced error propagation).  
+- **Address deterministic vs. stochastic environments**: Acknowledge the deterministic nature of Atari games but note that the method can be adapted to stochastic settings.  
+
+---
+
+### **4. Results**  
+- **Compare with baseline**: Include quantitative comparisons with Oh et al. 2015 (e.g., reward prediction accuracy, frame prediction quality) to demonstrate incremental improvements.  
+- **Analyze deterministic link**: Discuss how the model leverages the deterministic relationship between state and reward in Atari games, but also highlight limitations in non-deterministic scenarios.  
+- **Visualize results**: Add figures showing joint predictions (frames + rewards) to illustrate the model’s ability to capture both modalities.  
+
+---
+
+### **5. Future Work**  
+- **Expand on artificial samples**: Propose experiments on augmenting training data with synthetic samples (e.g., perturbed states, simulated rewards) to test robustness.  
+- **Integrate Monte-Carlo Tree Search (MCTS)**: Outline a plan to apply the joint model to MCTS-based planning, emphasizing potential reductions in real-world training samples and performance gains.  
+- **Generalize to other domains**: Suggest testing the method on non-Atari environments (e.g., robotics, real-world tasks) to demonstrate broader applicability.  
+
+---
+
+### **6. Conclusion**  
+- **Reiterate significance**: Reinforce the importance of the joint model for model-based RL, even if the immediate results are incremental.  
+- **Link to future directions**: Connect the current work to the proposed future experiments (artificial samples, MCTS) to show a clear path for impactful follow-up research.  
+- **Acknowledge limitations**: Briefly discuss the deterministic nature of Atari games and the need for further validation in more complex environments.  
+
+---
+
+### **7. References**  
+- **Cite Oh et al. 2015 explicitly**: Ensure the paper is clearly positioned in the context of prior work.  
+- **Add relevant literature**: Include references to model-based RL, MCTS, and joint state-reward learning to strengthen the theoretical foundation.  
+
+---
+
+### **8. Additional Revisions**  
+- **Clarify novelty in abstract/introduction**: Use stronger language to highlight the paper’s unique contribution (e.g., “explicit reward modeling for model-based RL”).  
+- **Address reviewer concerns**: Directly respond to critiques about incrementalism by emphasizing the groundwork laid for future applications (e.g., model-based RL).  
+- **Improve structure**: Ensure the paper flows logically from problem statement to methodology, results, and future work, with clear section headings.  
+
+---  
+**End of Revision Plan**
+======================================================================
+
+
+======================================================================
+TEST DATE: 18/02/2026 16:54:11
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+### Revision Plan
+
+---
+
+#### **1. Abstract**  
+- **Clarify the interactive bAbI dataset extension**: Explicitly describe how supporting questions/answers are added to the dataset when original context is insufficient.  
+- **Highlight novelty**: Emphasize the model’s distinction from DMN+/MemN2N by addressing feedback integration and synthetic question generation.  
+- **Mention experimental scope**: Specify that experiments were conducted on three modified bAbI tasks (e.g., "Which bedroom?") and note limitations (e.g., limited task coverage).  
+
+---
+
+#### **2. Introduction**  
+- **Expand dataset explanation**: Detail the methodology for generating supporting questions (e.g., templates used, number of templates, and how user feedback is simulated).  
+- **Address novelty concerns**: Contrast the model’s architecture with DMN+/MemN2N, emphasizing the dual-GRU encoding and feedback integration.  
+- **Clarify experimental focus**: Acknowledge that experiments are limited to three tasks but justify this choice (e.g., complexity of tasks, computational constraints).  
+
+---
+
+#### **3. Related Work**  
+- **Compare with DMN+/MemN2N**: Explicitly contrast the proposed model’s architecture (e.g., dual-GRU encoding, feedback integration) with existing models.  
+- **Cite relevant works**: Add references to dialog-based learning (e.g., Weston et al., Bordes et al.) to contextualize the interactive QA approach.  
+
+---
+
+#### **4. Methodology**  
+- **Clarify synthetic question generation**:  
+  - Specify whether templates are used (e.g., "Which bedroom, [master/guest] one?") and the number of templates.  
+  - Explain how the model generates questions (e.g., RNN-based vs. template-based prediction).  
+- **Address GRU encoding**:  
+  - Correct the typo in Equation 11 (ensure $K_f = K_h$ is explicitly stated in Section 4.5).  
+  - Clarify that a single GRU is used for all sequences (question, input, feedback) by aligning hidden state sizes.  
+- **Detail feedback integration**: Explain how user feedback is incorporated into the model (e.g., as an additional input sequence).  
+
+---
+
+#### **5. Experiments**  
+- **Expand task coverage**: If possible, add results for additional bAbI tasks (e.g., "Where is the key?"). If not, justify the current selection and discuss limitations.  
+- **Compare with DMN+/MemN2N**: Include direct comparisons in results (e.g., accuracy, F1 scores) to demonstrate improvements.  
+- **Address feedback simulation**: Explain how user feedback was simulated (e.g., predefined answers, synthetic data).  
+
+---
+
+#### **6. Discussion**  
+- **Elaborate on model advantages**: Highlight the benefits of the interactive dataset (e.g., simulating real-world QA scenarios) and the effectiveness of synthetic question generation.  
+- **Address practicality concerns**: Explain how the model avoids requiring human interaction during training (e.g., predefined feedback templates).  
+- **Discuss limitations**: Acknowledge the limited task coverage and potential overfitting to synthetic questions.  
+
+---
+
+#### **7. Conclusion**  
+- **Reiterate contributions**: Summarize the interactive dataset extension and the model’s architecture improvements over existing methods.  
+- **Suggest future work**: Propose expanding to more tasks, incorporating real user feedback, or exploring alternative question generation methods.  
+
+---
+
+#### **8. Appendices**  
+- **Correct typos**:  
+  - In Equation 14, ensure both instances of $t$ are uppercase (e.g., $\mathbf{u}^T \mathbf{s}_t + \mathbf{u}^T \mathbf{r}$).  
+- **Add dataset details**: Include a subsection describing the generation of supporting questions (e.g., number of templates, example questions, and feedback simulation process).  
+- **Include additional results**: Add ablation studies (e.g., comparing template-based vs. RNN-based question generation) or results from other bAbI tasks.  
+
+---
+
+#### **9. References**  
+- **Add missing citations**: Include references to dialog-based learning works (e.g., Weston et al., Bordes et al.) and other relevant QA models.  
+
+--- 
+
+**Note**: All revisions must be implemented in the final manuscript while maintaining the original structure and flow.
+======================================================================
+
+
+======================================================================
+TEST DATE: 18/02/2026 16:54:56
+AGENT: PLANNER
+MODEL USED: qwen3:14b
+----------------------------------------------------------------------
+RESPONSE:
+
+**Revision Plan**  
+---  
+
+### **1. Introduction**  
+- **Clarify Novelty**: Explicitly contrast the joint frame-reward prediction approach with [Oh et al. 2015], emphasizing that this work introduces a unified model for *simultaneous* prediction of frames and rewards, rather than post-hoc score counter incrementation.  
+- **Contextualize Contributions**: Highlight the significance of learning system dynamics and reward structure as a pre-condition for model-based RL, even if the results are incremental.  
+- **Address Deterministic Nature**: Acknowledge the deterministic link between state and reward in Atari games, but argue that the joint model provides a more robust foundation for future RL applications.  
+
+---
+
+### **2. Related Work**  
+- **Expand Comparison**: Add a subsection comparing with [Oh et al. 2015] and other frame prediction methods, emphasizing the novelty of the joint training framework.  
+- **Link to Model-Based RL**: Cite recent works on model-based RL (e.g., [Guo et al. 2014]) to strengthen the motivation for the paper’s contribution.  
+
+---
+
+### **3. Methodology**  
+- **Detail Joint Training**: Explicitly describe how the reward prediction head is integrated into the frame prediction network, including loss functions, training procedures, and architectural choices.  
+- **Highlight Integration**: Emphasize the synergy between frame and reward prediction (e.g., how latent representations for frames enable reward decoding).  
+
+---
+
+### **4. Results**  
+- **Discuss Deterministic Link**: Address the reviewers’ point that rewards are deterministic in Atari games by showing how the model’s accuracy in predicting frames directly translates to reward prediction.  
+- **Compare with Baselines**: Include ablation studies comparing the joint model with separate frame and reward prediction models.  
+- **Visualize Failures**: Add examples (e.g., Figure 3 in the draft) where the model fails to predict rewards, such as when objects are occluded or score counters are not updated.  
+
+---
+
+### **5. Future Work**  
+- **Elaborate on Proposed Directions**: Expand the conclusion to include detailed plans for:  
+  - **Artificial Sample Augmentation**: Propose methods for generating synthetic training data (e.g., perturbing frames or rewards) to improve robustness.  
+  - **Monte-Carlo Tree Search (MCTS) Integration**: Outline how the joint model could be used in MCTS for planning, with potential experiments on reduced training samples.  
+- **Link to Broader Impact**: Discuss how the model could be adapted to non-deterministic environments (e.g., real-world robotics) in future work.  
+
+---
+
+### **6. Conclusion**  
+- **Reinforce Pre-Condition Role**: Reiterate that the paper establishes a critical pre-condition for model-based RL, even if the results are incremental.  
+- **Acknowledge Limitations**: Explicitly state the paper’s scope (e.g., limited to Atari games) and suggest how future work will address these limitations.  
+
+---
+
+### **7. Additional Sections**  
+- **Limitations Section**: Add a dedicated subsection to discuss the deterministic nature of Atari rewards, the model’s sensitivity to occlusions, and the lack of exploration beyond Atari games.  
+- **Broader Implications**: Include a paragraph on how the joint model could be applied to other domains (e.g., robotics, autonomous systems) where state-reward relationships are non-deterministic.  
+
+---
+
+### **8. Language and Clarity**  
+- **Revise Tone**: Avoid overstatement of novelty; use phrases like “building on prior work” or “establishing a foundation” instead of “novel” or “groundbreaking.”  
+- **Clarify Figures/Tables**: Ensure captions and labels (e.g., Figure 3) explicitly describe the model’s failure modes and limitations.  
+
+---
+
+### **9. Experimental Validation**  
+- **Add Baseline Comparisons**: Include results comparing the joint model with separate frame and reward prediction models.  
+- **Quantify Robustness**: Report metrics (e.g., reward prediction accuracy) under varying conditions (e.g., occlusions, frame perturbations).  
+
+---
+
+### **10. References**  
+- **Cite Key Works**: Ensure [Oh et al. 2015] and [Guo et al. 2014] are explicitly cited in the introduction and related work sections.  
+- **Include MCTS Literature**: Add references to MCTS (e.g., [Browne et al. 2012]) to support future work proposals.  
+
+---  
+
+**End of Revision Plan**
+======================================================================
+

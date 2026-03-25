@@ -1,0 +1,118 @@
+
+======================================================================
+TEST DATE: 27/01/2026 12:53:56
+AGENT: REVISER
+MODEL USED: gemma3:12b
+----------------------------------------------------------------------
+RESPONSE:
+
+## Methodology (CAN Architecture)
+
+CAN leverages a recurrent neural network architecture to process the story context and question, and to generate supporting questions when necessary. The model consists of three main components: an encoder, a question generator, and an attention mechanism. The encoder processes the story context and question, generating contextualized representations. The question generator, when activated, produces supporting questions to clarify ambiguities or elicit missing information. The attention mechanism focuses on relevant parts of the story context to answer the question or generate supporting questions.
+
+The encoder utilizes two GRU layers: a sentence-level GRU and a word-level GRU. First, the story context and question are split into individual sentences. Each sentence is then processed by the word-level GRU, which captures the sequential dependencies between words within a sentence. The hidden states from the word-level GRU are then aggregated by the sentence-level GRU, which captures the relationships between sentences in the story and the question. This hierarchical GRU structure allows the model to understand the context at both the word and sentence levels.
+
+The question generator, when activated, uses the encoded representations to generate a supporting question. This component is trained to produce questions that are relevant to the original question and help to resolve any ambiguities.
+
+The attention mechanism allows the model to focus on the most relevant parts of the story context when answering the question or generating supporting questions. It computes a weighted sum of the hidden states from the sentence-level GRU, where the weights reflect the importance of each sentence. These weights are learned during training and allow the model to selectively attend to the information that is most useful for the task at hand. The attention weights provide insight into which parts of the story the model is focusing on.
+
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:55:08
+AGENT: REVISER
+MODEL USED: gemma3:12b
+----------------------------------------------------------------------
+RESPONSE:
+
+## Frame and Reward Prediction for Model-Based RL
+
+**Abstract:**
+
+This work explores the potential of combining video frame prediction with reward prediction to create more effective models for model-based reinforcement learning. While existing frame prediction methods offer a powerful way to learn environmental dynamics, their utility for planning is limited by the lack of reward information. We introduce a framework that jointly predicts future video frames and associated rewards, demonstrating improved prediction accuracy and, crucially, laying the groundwork for more effective model-based control. While the current implementation focuses on prediction accuracy, the architecture’s design enables future integration into planning algorithms, offering a promising avenue for advancing model-based reinforcement learning.
+
+**Introduction:**
+
+Model-based reinforcement learning (MBRL) offers a compelling alternative to model-free methods, promising sample efficiency and improved generalization. However, a significant challenge in MBRL lies in accurately learning the environment’s dynamics. Recent advances in deep learning have enabled impressive progress in video frame prediction, allowing agents to learn to generate realistic sequences of visual observations. However, these methods often lack the crucial information needed for effective planning: the reward signal. Without accurate reward prediction, agents struggle to reason about the consequences of their actions and optimize their behavior.
+
+This work addresses this limitation by introducing a framework that jointly predicts future video frames and associated rewards. We hypothesize that incorporating reward prediction into the learning process will lead to more accurate and useful models for planning, enabling agents to better anticipate the consequences of their actions. Our contribution lies in demonstrating the feasibility of this combined approach and highlighting its potential for enabling more effective model-based RL. We present results demonstrating improved prediction accuracy and outline future directions that leverage the learned model for planning and control.
+
+**Related Work:**
+
+Model-based reinforcement learning has a rich history, with early approaches relying on linear dynamics models [Bertsekas, 2005, 2007]. Recent advances have explored the use of deep neural networks to learn more complex environment dynamics [Bellemare et al., 2013, Finn et al., 2016]. Frame prediction has emerged as a powerful tool for learning these dynamics, with methods like DRAW [Gregor et al., 2015] and others demonstrating impressive results in generating realistic video sequences.  Reward prediction, often used in inverse reinforcement learning, aims to learn the underlying reward function from observed behavior [Bengio et al., 2009]. However, the combination of frame and reward prediction for the explicit purpose of enabling model-based RL remains relatively unexplored.  While [Oh et al., 2015] demonstrated the use of predicted scores to guide exploration, our work differs in its focus on predicting the underlying reward signal itself, which offers a more direct pathway to planning and control.
+
+**Methods:**
+
+Our framework consists of a convolutional neural network that takes a sequence of past frames as input and predicts both a sequence of future frames and a sequence of corresponding rewards. The architecture is based on [Oh et al., 2015] but incorporates a separate reward prediction head. The frame prediction head utilizes a recurrent architecture to capture temporal dependencies in the video sequence. The reward prediction head is a fully connected network that takes the hidden state of the recurrent frame prediction network as input and outputs a sequence of reward predictions.
+
+The loss function consists of two components: a mean squared error (MSE) loss for the frame prediction head and a MSE loss for the reward prediction head. The total loss is a weighted sum of these two losses, allowing us to balance the importance of frame and reward prediction. We explored other loss functions, such as Huber loss, but found that MSE provided satisfactory results. The predicted reward sequence is intended to be incorporated into a planning algorithm, such as model predictive control (MPC), though we do not implement a full MPC system in this work.
+
+**Experiments:**
+
+We evaluated our framework on the Atari 2600 suite of games, using the Arcade Learning Environment (ALE) [Bellemare et al., 2013]. We focused on a subset of games with relatively simple dynamics and reward structures. The network was trained using a curriculum learning approach [Bengio et al., 2009], starting with shorter sequences and gradually increasing the sequence length. We used the Adam optimizer [Kingma and Bengio, 2010] with a learning rate of 0.001.
+
+To demonstrate the potential for model-based RL, we conducted a preliminary experiment using a simple trajectory optimization approach. Given an initial state and a desired goal state, we used the learned model to generate a sequence of predicted frames and rewards. We then optimized a short trajectory of actions to maximize the predicted cumulative reward. This trajectory optimization was performed using a gradient-based method.
+
+**Results:**
+
+The combined frame and reward prediction model achieved improved prediction accuracy compared to a model that only predicts frames. The reward prediction head demonstrated reasonable accuracy in predicting reward sequences, although performance varied across different games.  The preliminary trajectory optimization experiment showed that the predicted reward sequences could be used to guide the agent towards the desired goal state. While the optimized trajectories were not optimal, they demonstrated the potential for using the learned model for planning. Visualizations of the predicted reward trajectories revealed a general correlation with the actual reward sequences, although discrepancies were observed in situations with sparse rewards or complex dynamics.
+
+**(Figure 1: Architecture Diagram - showing frame prediction head and reward prediction head)**
+
+**(Figure 2: Example Predicted Reward Trajectories vs. Actual Reward Sequences for a specific game)**
+
+**(Figure 3: Results of the preliminary trajectory optimization experiment - showing optimized trajectory compared to random trajectory)**
+
+**Discussion & Future Work:**
+
+This work demonstrates the feasibility of combining video frame prediction with reward prediction to create models that are potentially more useful for model-based reinforcement learning. While the current implementation focuses on prediction accuracy, the architecture’s design enables future integration into planning algorithms. The preliminary trajectory optimization experiment provides initial evidence that the learned model can be used to guide planning, although further research is needed to develop more sophisticated planning algorithms.
+
+Future work will focus on several key areas. First, we will explore the use of artificial data augmentation techniques to improve the robustness and generalization of the model. This will involve generating synthetic data with known reward structures and using it to train the model. Second, we will investigate the integration of the learned model into a Monte Carlo Tree Search (MCTS) framework [Browne et al., 2012]. This will allow us to explore the environment more efficiently and find better plans. MCTS would leverage the predicted reward sequences to guide the search process, prioritizing actions that lead to higher predicted rewards.  We also plan to extend the approach to more complex environments and investigate methods for incorporating uncertainty estimation into the reward prediction head.  The limitations of the current approach include the dependence on the Atari environment and the limited planning horizon.  Addressing these limitations will require further research into more generalizable dynamics models and more sophisticated planning algorithms.
+
+
+
+**References:**
+
+M G Bellemare, Y Naddaf, J Veness, and M Bowling. The Arcade Learning Environment: an evaluation platform for general agents. Journal of Artificial Intelligence Research, 47:253279, 2013.
+
+M G Bellemare, S Srinivasan, G Ostrovski, T Schaul, D Saxton, and R Munos. Unifying count-based exploration and intrinsic motivation. arXiv preprint arXiv:1606.01868, 2016.
+
+Y Bengio. Learning deep architectures for AI. Foundations and Trends in Machine Learning, 2(1):1127, 2009.
+
+Y Bengio, J Louradour, R Collobert, and J Weston. Curriculum learning. In Proceedings of the International Conference on Machine Learning, 2009.
+
+D P Bertsekas. Dynamic programming & optimal control, volume 1. Athena Scientific, 2005.
+
+D P Bertsekas. Dynamic programming & optimal control, volume 2. Athena Scientific, 2007.
+
+C Browne, E Powley, D Whitehouse, S Lucas, P I Cowling, P Rohlfshagen, S Tavener, D Perez, S Samothrakis, and S Colton. A survey of monte carlo tree search methods. IEEE Transactions on Computational Intelligence and AI in Games, 4(1):149, 2012.
+
+A Dosovitskiy, J T Springenberg, and T Brox. Learning to generate chairs with convolutional neural networks. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2015.
+
+C Finn, X Y Tan, Y Duan, T Darrell, S Levine, and P Abbeel. Deep spatial autoencoders for visuomotor learning. In Proceedings of the IEEE International Conference on Robotics and Automation, 2016.
+
+X Glorot and Y Bengio. Understanding the difficulty of training deep feedforward neural networks. In Proceedings of the International Conference on Artificial Intelligence and Statistics, 2010.
+
+X Glorot, A Bordes, and Y Bengio. Deep sparse rectifier neural networks. In Proceedings of the International Conference on Artificial Intelligence and Statistics, 2011.
+
+R Goroshin, M Mathieu, and Y LeCun. Learning to linearize under uncertainty. Advances in Neural Information Processing Systems, 2015.
+
+K Gregor, I Danihelka, A Graves, D J Rezende, and D Wierstra. DRAW: a recurrent neural network for image generation. In Proceedings of the International Conference on Machine Learning, 2015.
+
+X Guo, S Singh, H Lee, R Lewis, and X Wang. Deep learning for real-time Atari game play using offline Monte-Carlo tree search planning. In Advances in Neural Information Processing Systems, 2016.
+
+Y Bengio. Learning deep architectures for AI. Foundations and Trends in Machine Learning, 2(1):1127, 2009.
+
+D P Bertsekas. Dynamic programming & optimal control, volume 1. Athena Scientific, 2005.
+
+D P Bertsekas. Dynamic programming & optimal control, volume 2. Athena Scientific, 2007.
+
+M G Bellemare, S Srinivasan, G Ostrovski, T Schaul, D Saxton, and R Munos. Unifying count-based exploration and intrinsic motivation. arXiv preprint arXiv:1606.01868, 2016.
+
+Y Bengio. Learning deep architectures for AI. Foundations and Trends in Machine Learning, 2(1):1127, 2009.
+
+C Browne, E Powley, D Whitehouse, S Lucas, P I Cowling, P Rohlfshagen, S Tavener, D Perez, S Samothrakis, and S Colton. A survey of monte carlo tree search methods. IEEE Transactions on Computational Intelligence and AI in Games, 4(1):149, 2012.
+
+======================================================================
+

@@ -1,0 +1,171 @@
+
+======================================================================
+TEST DATE: 27/01/2026 12:53:48
+AGENT: PLANNER
+MODEL USED: gemma3:12b
+----------------------------------------------------------------------
+RESPONSE:
+
+## Revision Plan: Interactive Question Answering with CAN
+
+**Overall Goal:** Address reviewer concerns regarding novelty, experimental setup, dataset creation, and clarity, ultimately strengthening the paper's contribution and justifying its ICLR suitability.
+
+**I. Introduction & Motivation**
+
+*   **Revision:** Re-emphasize the limitations of existing QA systems and the need for interactive approaches. Clearly articulate the specific problem CAN addresses – not just QA, but *interactive* QA where the system actively seeks clarification.
+*   **Action Items:**
+    *   Expand on the limitations of non-interactive QA systems (e.g., inability to handle ambiguity, lack of robustness to incomplete information).
+    *   Provide a more compelling narrative around the benefits of interactive QA (e.g., improved accuracy, user experience, ability to handle complex reasoning).
+    *   Briefly introduce the core idea of CAN and its key components (without diving into technical details).
+
+**II. Related Work**
+
+*   **Revision:** Broaden the scope of related work to include not only QA and memory networks but also dialogue systems and interactive learning.
+*   **Action Items:**
+    *   Add a section on dialogue systems, highlighting approaches to question generation and response selection.
+    *   Discuss interactive learning paradigms and how CAN fits into this broader landscape.
+    *   Clearly differentiate CAN from existing approaches, emphasizing its unique contribution.
+
+**III. Methodology (CAN Architecture)**
+
+*   **Revision:** Improve clarity and conciseness of the architecture description.
+*   **Action Items:**
+    *   Provide a more intuitive explanation of the sentence-level and word-level GRUs. Consider a visual diagram to illustrate the architecture.
+    *   Clarify the role of the attention mechanism and its contribution to the model's performance.
+    *   Reduce technical jargon where possible, or provide clear definitions.
+
+**IV. Experimental Setup**
+
+*   **Revision:** This is a critical area for revision. Address concerns about the fairness of the comparison and the limited scope of experiments.
+*   **Action Items:**
+    *   **Dataset Creation:** Provide a *detailed* explanation of how the interactive dataset was created. Specifically:
+        *   Describe the templates used to generate supporting questions. Quantify the number of templates.
+        *   Explain the process of ensuring the supporting questions are genuinely necessary for answering the question (not just superficial).
+        *   Justify the choice of only using three tasks from the original bAbI dataset.  If possible, expand the experiments to include more tasks.
+    *   **Baseline Comparison:**  Re-evaluate the baseline models.
+        *   Ensure the baselines are implemented correctly and are competitive.
+        *   Consider including more relevant baselines, particularly those from the dialogue system domain.
+        *   Address the reviewer's point about baselines treating all questions equally – explore a modified baseline that mimics CAN’s interactive nature more closely.
+    *   **Ablation Studies:** Conduct ablation studies to assess the contribution of different components of CAN (e.g., sentence-level GRU, word-level GRU, attention mechanism).
+    *   **Error Analysis:** Perform a qualitative error analysis to understand the types of errors CAN makes and identify areas for improvement.
+
+**V. Results & Discussion**
+
+*   **Revision:**  Strengthen the claims made in the results section and provide a more nuanced discussion of the findings.
+*   **Action Items:**
+    *   Provide more statistical significance analysis (e.g., p-values) to support the claims of superiority.
+    *   Address the reviewer's comment about CAN's performance being potentially due to the question generation process itself.  Design experiments to isolate the effect of the architecture from the question generation.
+    *   Discuss the limitations of the current approach and potential directions for future research.
+
+**VI. Training Procedure**
+
+*   **Revision:** Clarify minor inconsistencies and technical details.
+*   **Action Items:**
+    *   Correct the typo in Equation 14 (change 't' to 'T' for transpose).
+    *   Clarify the relationship between the hidden state sizes of the question, input sentences, and user feedback. Explicitly state if $K_f = K_h$ or explain the rationale if they are different.
+
+**VII. Conclusion**
+
+*   **Revision:** Reiterate the key contributions of the paper and emphasize the potential impact of interactive QA.
+*   **Action Items:**
+    *   Summarize the findings and highlight the advantages of CAN.
+    *   Outline future research directions, particularly addressing the limitations identified in the discussion section.
+
+
+
+**Overall Style & Presentation**
+
+*   **Action Items:**
+    *   Thoroughly proofread the paper for typos and grammatical errors.
+    *   Improve the clarity and flow of the writing.
+    *   Consider adding more visual aids (e.g., diagrams, tables) to enhance understanding.
+    *   Ensure consistent terminology throughout the paper.
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 12:54:28
+AGENT: PLANNER
+MODEL USED: gemma3:12b
+----------------------------------------------------------------------
+RESPONSE:
+
+## Revision Plan: Frame and Reward Prediction for Model-Based RL
+
+**Overall Assessment:** The reviews consistently highlight the lack of novelty and incremental nature of the work. While the technical execution is sound and the writing clear, the core contribution needs to be strengthened to justify a publication. The future work directions are particularly promising and should be prioritized.
+
+**I. Abstract:**
+
+*   **Revision Goal:** Reframe the abstract to emphasize the potential for model-based RL and downplay the incremental nature of the reward prediction head.
+*   **Specific Changes:**
+    *   Replace phrases like "sensible extension" with language highlighting the potential for improved model-based RL performance.
+    *   Focus on the *promise* of the combined model for planning and control, rather than just prediction accuracy.
+    *   Briefly mention the limitations of current approaches and how this work addresses them.
+
+**II. Introduction:**
+
+*   **Revision Goal:** Provide stronger motivation for the work and clearly articulate the gap this research aims to fill.
+*   **Specific Changes:**
+    *   Expand on the limitations of existing frame prediction methods in the context of model-based RL (e.g., inability to plan effectively due to lack of reward information).
+    *   Clearly state the hypothesis: that incorporating reward prediction will lead to more accurate and useful models for planning.
+    *   Reiterate the contribution as enabling more effective model-based RL, not just improved prediction.
+    *   Briefly preview the future work directions and their potential impact.
+
+**III. Related Work:**
+
+*   **Revision Goal:**  More thoroughly contextualize the work within the broader literature on model-based RL and reward prediction.
+*   **Specific Changes:**
+    *   Expand discussion of model-based RL approaches and their challenges.
+    *   Include more references to reward prediction techniques and their application in RL.
+    *   Clearly differentiate this work from [Oh et al., 2015] by emphasizing the *purpose* of the reward prediction head (planning) versus simply predicting score changes.
+
+**IV. Methods:**
+
+*   **Revision Goal:** Maintain clarity but potentially add detail to justify design choices and highlight the novelty of the combined architecture.
+*   **Specific Changes:**
+    *   Justify the choice of architecture and loss functions for both frame and reward prediction.
+    *   Consider briefly discussing alternative architectures and why they were not chosen.
+    *   Add a small section explaining how the predicted reward is integrated into a potential planning framework (even if not fully implemented in this work).
+
+**V. Experiments:**
+
+*   **Revision Goal:**  Strengthen the experimental setup and analysis to demonstrate the potential for model-based RL.
+*   **Specific Changes:**
+    *   **Crucially:** Include *at least one* preliminary experiment demonstrating the use of the learned model for a simple planning task (e.g., a short horizon trajectory optimization). This is the most important change.
+    *   Analyze the failure cases of the reward prediction head to understand limitations and potential areas for improvement.
+    *   Provide more detailed analysis of the predicted reward trajectories, showing how they relate to actual reward sequences.
+    *   Consider adding ablation studies to assess the impact of the reward prediction head on frame prediction accuracy.
+
+**VI. Results:**
+
+*   **Revision Goal:** Present results in a way that highlights the potential for model-based RL, even if the reward prediction accuracy is not groundbreaking.
+*   **Specific Changes:**
+    *   Focus on the *usefulness* of the predicted rewards for planning, rather than just the accuracy metrics.
+    *   Include visualizations of the predicted reward trajectories and their correlation with actual rewards.
+    *   Present the results of the preliminary planning experiment (from the revised Experiments section).
+
+**VII. Discussion & Future Work:**
+
+*   **Revision Goal:**  Significantly expand the discussion of future work and acknowledge the limitations of the current approach.
+*   **Specific Changes:**
+    *   **Prioritize:** Elaborate on the two future work directions mentioned in the original draft:
+        *   **Artificial Data Augmentation:** Describe how synthetic data could be used to improve the robustness and generalization of the model.
+        *   **Monte Carlo Tree Search (MCTS):** Detail how the learned model could be integrated into an MCTS framework for planning.
+    *   Acknowledge the limitations of the current approach (e.g., limited planning horizon, dependence on Atari environment).
+    *   Discuss potential avenues for future research, such as applying the approach to more complex environments or incorporating uncertainty estimation.
+    *   Reiterate the potential impact of the work on model-based RL.
+
+**VIII. Figures & Tables:**
+
+*   **Revision Goal:**  Create figures and tables that effectively communicate the key findings and demonstrate the potential for model-based RL.
+*   **Specific Changes:**
+    *   Include a figure illustrating the architecture and data flow.
+    *   Include visualizations of predicted reward trajectories and their correlation with actual rewards.
+    *   Include a figure showing the results of the preliminary planning experiment.
+    *   Ensure all figures and tables are clearly labeled and captioned.
+
+
+
+**Overall Priority:** The most critical revision is to include a preliminary planning experiment to demonstrate the potential of the learned model for model-based RL. This will address the reviewers' concerns about the lack of novelty and incremental nature of the work.
+======================================================================
+

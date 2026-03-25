@@ -1,0 +1,161 @@
+
+======================================================================
+TEST DATE: 27/01/2026 14:00:31
+AGENT: PLANNER
+MODEL USED: mistral-small3.2:24b
+----------------------------------------------------------------------
+RESPONSE:
+
+Here is the structured revision plan based on the draft and the reviews:
+
+---
+
+### **Revision Plan**
+
+#### **1. Title and Abstract**
+- **Action**: Ensure the title and abstract clearly reflect the novel contributions of the model and the interactive QA dataset extension.
+- **Details**:
+  - Highlight the two-stage encoding mechanism and the interactive dataset modifications.
+  - Clarify the distinction between the proposed model and existing baselines (e.g., DMN, MemN2N).
+
+#### **2. Introduction**
+- **Action**: Strengthen the motivation for the interactive QA task and the need for the proposed model.
+- **Details**:
+  - Explain why existing models (e.g., DMN, MemN2N) struggle with interactive QA and how the proposed model addresses these limitations.
+  - Clarify the role of user feedback in the interactive QA setting.
+
+#### **3. Related Work**
+- **Action**: Expand the discussion of related work to address reviewer concerns about novelty.
+- **Details**:
+  - Compare the proposed model with other interactive QA or dialog-based models (e.g., Weston and Bordes).
+  - Discuss how the two-stage encoding mechanism differs from prior work.
+
+#### **4. Methodology**
+- **Action**: Clarify the model architecture and training procedure.
+- **Details**:
+  - **Equation 14**: Fix the typo (replace lowercase `t` with uppercase `T` to indicate transpose).
+  - **Section 4.5**: Clarify that the hidden state sizes (`K_f` and `K_h`) are equal, allowing a single GRU to encode all sequences.
+  - **Two-Stage Encoding**: Provide a clearer explanation of how the word-level and sentence-level GRUs interact.
+  - **Interactive QA Task**: Describe how supporting questions and feedback are generated (e.g., templates, vocabulary size).
+  - **Baseline Comparison**: Justify why the proposed model is fairer than baselines (e.g., DMN, MemN2N) in handling feedback.
+
+#### **5. Experiments**
+- **Action**: Address concerns about the experimental setup and results.
+- **Details**:
+  - **Dataset Details**: Provide more information on how supporting questions and feedback were generated (e.g., templates, vocabulary).
+  - **Task Selection**: Explain why only three tasks were used and how they represent the interactive QA challenge.
+  - **Baseline Fairness**: Ensure the comparison with baselines is fair (e.g., treating all questions as individual instances).
+  - **Question Generation**: Address whether a softmax over enumerated questions could replace the RNN decoder.
+
+#### **6. Results and Discussion**
+- **Action**: Strengthen the discussion of results and their implications.
+- **Details**:
+  - Highlight the advantages of the two-stage encoding mechanism over baselines.
+  - Discuss the impact of user feedback on model performance.
+  - Compare the proposed model with other interactive QA or dialog-based models.
+
+#### **7. Conclusion**
+- **Action**: Summarize the key contributions and future work.
+- **Details**:
+  - Emphasize the novelty of the interactive QA dataset and the model’s ability to handle feedback.
+  - Suggest directions for extending the work (e.g., more tasks, real-world applications).
+
+#### **8. Appendix**
+- **Action**: Include additional details to address reviewer concerns.
+- **Details**:
+  - Provide the exact templates used for generating supporting questions.
+  - Include a table comparing the proposed model with baselines on all tasks (not just three).
+
+#### **9. Typos and Clarity**
+- **Action**: Fix all typos and improve clarity throughout the paper.
+- **Details**:
+  - Ensure consistent notation (e.g., uppercase `T` for transpose).
+  - Clarify any ambiguous statements in the methodology or experiments.
+
+---
+
+This revision plan addresses all reviewer concerns while maintaining the structure and focus of the original draft.
+======================================================================
+
+
+======================================================================
+TEST DATE: 27/01/2026 14:01:06
+AGENT: PLANNER
+MODEL USED: mistral-small3.2:24b
+----------------------------------------------------------------------
+RESPONSE:
+
+Here is the structured revision plan based on the draft and peer reviews:
+
+---
+
+### **Revision Plan**
+
+#### **1. Introduction**
+- **Action**: Strengthen the motivation and novelty of the work.
+- **Details**:
+  - Emphasize the importance of joint frame and reward prediction for model-based RL.
+  - Clarify how this work differs from prior methods (e.g., [Oh et al. 2015]).
+  - Highlight the broader implications of the approach (e.g., applicability beyond Atari games).
+
+#### **2. Related Work**
+- **Action**: Expand the discussion to better contextualize the contribution.
+- **Details**:
+  - Compare with prior work on frame prediction and reward prediction separately.
+  - Discuss limitations of existing methods that this work addresses.
+  - Add references to recent advancements in model-based RL.
+
+#### **3. Methodology**
+- **Action**: Improve clarity and justification for design choices.
+- **Details**:
+  - Provide more details on the architecture (e.g., why a feedforward network was chosen).
+  - Explain how the reward-predicting head is integrated with the frame prediction network.
+  - Discuss potential limitations (e.g., deterministic assumptions in Atari games).
+
+#### **4. Experiments**
+- **Action**: Enhance the experimental setup and analysis.
+- **Details**:
+  - Include additional baselines (e.g., separate models for frame and reward prediction).
+  - Add ablation studies (e.g., impact of reward-prediction head on frame prediction).
+  - Extend evaluation to more games or environments (if feasible).
+
+#### **5. Results**
+- **Action**: Improve presentation and discussion of results.
+- **Details**:
+  - Add more visualizations (e.g., error analysis for reward prediction).
+  - Discuss failure cases (e.g., steps 20-50 where performance drops).
+  - Compare with human-level performance or other benchmarks.
+
+#### **6. Future Work**
+- **Action**: Prioritize and expand on proposed directions.
+- **Details**:
+  - Include preliminary results or plans for:
+    - Using the model for model-based RL (e.g., with MCTS).
+    - Testing in more complex environments (e.g., continuous control).
+  - Discuss potential challenges (e.g., scalability, generalization).
+
+#### **7. Conclusion**
+- **Action**: Summarize contributions and broader impact.
+- **Details**:
+  - Reiterate the key takeaways.
+  - Emphasize the potential for future work (e.g., model-based RL applications).
+
+#### **8. General Improvements**
+- **Action**: Address reviewer feedback on novelty and impact.
+- **Details**:
+  - Highlight the incremental nature as a stepping stone for future work.
+  - Clarify that the paper establishes a precondition for model-based RL.
+  - Ensure the paper is concise but impactful (avoid "thin" contributions).
+
+#### **9. Formatting and Clarity**
+- **Action**: Polish the writing for readability.
+- **Details**:
+  - Ensure consistent terminology (e.g., "reward-predicting head").
+  - Simplify complex sentences for clarity.
+  - Check for grammatical errors and typos.
+
+---
+
+This plan addresses the reviewers' concerns about novelty, impact, and future directions while maintaining the paper's clarity and structure.
+======================================================================
+

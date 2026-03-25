@@ -18,7 +18,7 @@ TOP_K_EXAMPLES = int(TOP_K_EXAMPLES) if TOP_K_EXAMPLES not in (None, "", "None")
 # ==========================
 
 # Chave OpenAI (NÃO deixe hardcoded em produção; use variável de ambiente)
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "API_KEY_AQUI"
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
 
@@ -32,10 +32,10 @@ G_EVAL_MODEL = os.getenv("DRFT_G_EVAL_MODEL", "gpt-4o-mini")
 # ==========================
 
 # Endpoint do servidor vLLM para inferência
-CHAT_MODEL_URL = os.getenv("DRFT_CHAT_MODEL_URL", "http://10.93.48.97:11436/v1")
+CHAT_MODEL_URL = os.getenv("DRFT_CHAT_MODEL_URL", "IP_SERVIDOR")
 
 # URL base para operações de API do Ollama (ex: /api/pull)
-OLLAMA_API_URL = os.getenv("DRFT_OLLAMA_API_URL", "http://10.93.48.97:11436/api")
+OLLAMA_API_URL = os.getenv("DRFT_OLLAMA_API_URL", "IP_SERVIDOR")
 
 # Nome do modelo a ser usado se não especificado de outra forma (fallback)
 LLM_MODEL_NAME = os.getenv("DRFT_LLM_MODEL_NAME", "qwen2.5:32b")
